@@ -40,12 +40,7 @@ class perceptron:
         self.w0 = self.w0 + (output - prediction) * x0 * self.learningRate
         self.w1 = self.w1 + (output - prediction) * x1 * self.learningRate
         self.bias = self.bias + (output - prediction) * self.learningRate * 640
-    def showAcc(self, x0List, x1List, yList, sampleNum):
-        hit = 0
-        for i in range(sampleNum):
-            if self.predict(x0List[i], x1List[i]) == yList[i]:
-               hit = hit + 1
-        print("Accuracy = {}".format(hit/sampleNum))
+
 
 class sample:
     def __init__(self, sampleNum, x0Range, x1Range):
@@ -114,8 +109,6 @@ def main():
             if event.type == pygame.QUIT:
                 run=False
         screen.fill((BLACK))
-        """pygame.draw.circle(screen,BLUE,[width//2,height//2],100,0,)
-        pygame.draw.line(screen, (0,255,255),(-4,-4),(360,360),9)"""
         c1.drawCoordinats()
         c1.drawSamples(s1.x0List,s1.x1List,p1.makePredictionList(s1.x0List,s1.x1List,sNum),s1.yList,sNum)
         p1.train(s1.x0List[epoch], s1.x1List[epoch], s1.yList[epoch])
